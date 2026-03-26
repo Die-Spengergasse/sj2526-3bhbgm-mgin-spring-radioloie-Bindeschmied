@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>add new patient</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+
+        Date and Time
+        <input type="datetime-local" th:field="*{datetime}" class="form-control">
+
+        <select name="patientId" class="form-control">
+            <option th:each="patient : ${patients}"
+                    th:value="${patient.id}"
+                    th:text="${patient.name}">
+            </option>
+        </select>
+
+        <select name="machineId" class="form-control">
+            <option th:each="machine : ${machines}"
+                    th:value="${machine.id}"
+                    th:text="${machine.type}">
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Speichern</button>
+
+    </form>
+</div>
+</body>
+</html>

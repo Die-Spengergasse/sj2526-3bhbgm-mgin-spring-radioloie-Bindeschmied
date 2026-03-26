@@ -9,24 +9,22 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
-                <th>name</th>
-                <th>birth</th>
-                <th>gender</th>
-            </tr>
+        <tr>
+            <th>Date</th>
+            <th>Patient</th>
+            <th>Device</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="p : ${patients}">
-                <td th:text="${p.name}"></td>
-                <td th:text="${p.birth}"></td>
-                <td th:text="${p.gender}"></td>
-            </tr>
+        <tr th:each="r : ${reservations}">
+            <td th:text="${r.getDatetime()}"></td>
+            <td th:text="${}"></td>
+            <td th:text="${}"></td>
+        </tr>
         </tbody>
-
     </table>
-
     <p>
-        <a href="/patient/add">new patient</a>
+        <a href="/reservation/add">new reservation</a>
     </p>
 </div>
 <button onclick=""></button>

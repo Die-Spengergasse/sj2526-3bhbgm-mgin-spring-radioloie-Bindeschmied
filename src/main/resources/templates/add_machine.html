@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>add new patient</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/machine/add}" th:object="${machine}" method="post">
+        <input type="text" th:field="*{type}" class="form-control" placeholder="Machine Type(MRT, CT,...)">
+        Room: <input type="text" th:field="*{room}" class="form-control" placeholder="z.B. C3.10">
+        <input type="submit" class="form-control" value="Save">
+    </form>
+</div>
+</body>
+</html>

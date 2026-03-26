@@ -9,24 +9,20 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
-                <th>name</th>
-                <th>birth</th>
-                <th>gender</th>
-            </tr>
+        <tr>
+            <th>Device Type</th>
+            <th>Room stationed</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="p : ${patients}">
-                <td th:text="${p.name}"></td>
-                <td th:text="${p.birth}"></td>
-                <td th:text="${p.gender}"></td>
-            </tr>
+        <tr th:each="m : ${machines}">
+            <td th:text="${m.getType()}"></td>
+            <td th:text="${m.room}"></td>
+        </tr>
         </tbody>
-
     </table>
-
     <p>
-        <a href="/patient/add">new patient</a>
+        <a href="/machine/add">new device</a>
     </p>
 </div>
 <button onclick=""></button>
