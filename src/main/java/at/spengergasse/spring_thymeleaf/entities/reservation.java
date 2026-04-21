@@ -5,20 +5,21 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reservation")
-public class reservation {  // Klassenname groß schreiben, konventionell
+public class reservation { // Klasse groß schreiben
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "patient_id")  // Spalte in der DB
+    @JoinColumn(name = "patient_id") // genau die Spalte in DB
     private Patient patient;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "machine_id")  // Spalte in der DB
+    @JoinColumn(name = "machine_id") // genau die Spalte in DB
     private Machine machine;
 
     private LocalDateTime datetime;
+
 
     // getter & setter
     public int getId() { return id; }

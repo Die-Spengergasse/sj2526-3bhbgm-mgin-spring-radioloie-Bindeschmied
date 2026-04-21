@@ -2,31 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>add new patient</title>
+    <title>Add New Reservation</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
+    <h2>Add New Reservation</h2>
+
+    <!-- Formular -->
     <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
 
-        Date and Time
-        <input type="datetime-local" th:field="*{datetime}" class="form-control">
+        <!-- Datum & Uhrzeit -->
+        <div class="form-group">
+            <label for="datetime">Date and Time</label>
+            <input type="datetime-local" th:field="*{datetime}" class="form-control" id="datetime" required>
+        </div>
 
-        <select name="patientId" class="form-control">
-            <option th:each="patient : ${patients}"
-                    th:value="${patient.id}"
-                    th:text="${patient.name}">
-            </option>
-        </select>
+        <div class="form-group">
+            <label for="patientId">Patient</label>
+            <select name="patientId" class="form-control" id="patientId" required>
+                <option th:each="patient : ${patients}"
+                        th:value="${patient.id}"
+                        th:text="${patient.name}">
+                </option>
+            </select>
 
-        <select name="machineId" class="form-control">
-            <option th:each="machine : ${machines}"
-                    th:value="${machine.id}"
-                    th:text="${machine.type}">
-            </option>
-        </select>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Speichern</button>
+        <div class="form-group">
+            <label for="machineId">Machine</label>
+            <select name="machineId" class="form-control" id="machineId" required>
+                <option th:each="machine : ${machines}"
+                        th:value="${machine.id}"
+                        th:text="${machine.type}">
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Reservation</button>
 
     </form>
 </div>

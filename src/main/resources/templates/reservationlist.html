@@ -18,8 +18,8 @@
         <tbody>
         <tr th:each="r : ${reservations}">
             <td th:text="${r.getDatetime()}"></td>
-            <td th:text="${}"></td>
-            <td th:text="${}"></td>
+            <td th:text="${r.getPatient().getName()}"></td>
+            <td th:text="${r.getMachine().getType()}"></td>
         </tr>
         </tbody>
     </table>
@@ -27,6 +27,6 @@
         <a href="/reservation/add">new reservation</a>
     </p>
 </div>
-<button onclick=""></button>
+<a th:href="@{/}" class="btn btn-secondary">Zurück</a>
 </body>
 </html>

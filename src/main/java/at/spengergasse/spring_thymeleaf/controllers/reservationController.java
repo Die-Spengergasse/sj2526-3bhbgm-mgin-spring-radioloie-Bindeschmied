@@ -33,21 +33,18 @@ public class reservationController {
         model.addAttribute("patients", patientRep.findAll());
         return "add_reservation";
     }
-
     @PostMapping("/add")
     public String add(@ModelAttribute("reservation") reservation reservation,
                       @RequestParam int patientId,
                       @RequestParam int machineId) {
 
-        Patient patient = patientRep.findById(patientId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + patientId));
-        Machine machine = machineRep.findById(machineId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid machine Id:" + machineId));
+        Patient patient = patientRep.findById(patientId);
+        Machine machine = machineRep.findById(machineId);
 
         reservation.setPatient(patient);
         reservation.setMachine(machine);
 
-        reservationRep.save(reservation); // einmalig speichern, wenn alles gesetzt ist
+        reservationRep.save(reservation);
 
         return "redirect:/reservation/list";
     }
