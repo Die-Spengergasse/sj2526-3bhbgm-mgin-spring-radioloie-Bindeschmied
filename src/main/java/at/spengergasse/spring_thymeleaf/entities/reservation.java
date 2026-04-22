@@ -19,6 +19,8 @@ public class reservation { // Klasse groß schreiben
     private Machine machine;
 
     private LocalDateTime datetime;
+    private String comment;
+    private String bodyregion;
 
 
     // getter & setter
@@ -33,4 +35,20 @@ public class reservation { // Klasse groß schreiben
 
     public LocalDateTime getDatetime() { return datetime; }
     public void setDatetime(LocalDateTime datetime) { this.datetime = datetime; }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getBodyregion() {
+        return bodyregion;
+    }
+
+    public void setBodyregion(String bodyregion) {
+        this.bodyregion = bodyregion;
+    }
 }

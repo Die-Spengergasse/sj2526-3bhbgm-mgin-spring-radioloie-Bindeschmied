@@ -12,7 +12,6 @@
     <!-- Formular -->
     <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
 
-        <!-- Datum & Uhrzeit -->
         <div class="form-group">
             <label for="datetime">Date and Time</label>
             <input type="datetime-local" th:field="*{datetime}" class="form-control" id="datetime" required>
@@ -37,6 +36,28 @@
                         th:text="${machine.type}">
                 </option>
             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bodyregion">Machine</label>
+            <select name="bodyregion" class="form-control" id="bodyregion" required th:field="${reservation.bodyregion}">
+                <option th:value="head"
+                        th:text="head">
+                </option>
+                <option th:value="abdomen"
+                        th:text="abdomen">
+                </option>
+                <option th:value="thorax"
+                        th:text="thorax">
+                </option>
+                <option th:value="extremities"
+                        th:text="extremities">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input th:field="${reservation.comment}" placeholder="comment" class="form-control">
         </div>
 
         <button type="submit" class="btn btn-primary">Save Reservation</button>
