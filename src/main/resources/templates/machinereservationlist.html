@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Patients List</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -27,25 +27,5 @@
         <a href="/reservation/add">new reservation</a>
     </p>
 </div>
-<form th:action="@{/reservation/listmachine}" method="get">
-
-    <div class="form-group">
-        <label for="machineId">Machine</label>
-
-        <select name="machineId" class="form-control" id="machineId" required>
-            <option th:each="machine : ${machines}"
-                    th:value="${machine.id}"
-                    th:text="${machine.type+ ' '+ machine.room}">
-            </option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-secondary">
-        Machine list
-    </button>
-
-</form>
-
-<a th:href="@{/}" class="btn btn-secondary">Zurück</a>
 </body>
 </html>

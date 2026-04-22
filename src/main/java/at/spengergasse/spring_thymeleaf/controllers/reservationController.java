@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/reservation")
 public class reservationController {
@@ -52,6 +54,17 @@ public class reservationController {
     @GetMapping("/list")
     public String list(Model model) {
         model.addAttribute("reservations", reservationRep.findAll());
+        model.addAttribute("machines", machineRep.findAll());
         return "reservationlist";
+    }
+
+    @GetMapping("/listmachine")
+    public String listmachine(@RequestParam int machineId, Model model) {
+
+        List<reservation> reservations = reservationRep.findByMachineId(machineId);
+
+        model.addAttribute("reservations", reservations);
+
+        return "machinereservationlist";
     }
 }
