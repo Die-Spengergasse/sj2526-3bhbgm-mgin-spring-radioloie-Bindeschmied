@@ -34,7 +34,12 @@ public class reservation { // Klasse groß schreiben
     public void setMachine(Machine machine) { this.machine = machine; }
 
     public LocalDateTime getDatetime() { return datetime; }
-    public void setDatetime(LocalDateTime datetime) { this.datetime = datetime; }
+    public void setDatetime(LocalDateTime datetime) {
+        if(datetime.isBefore(LocalDateTime.now())){
+            throw new IllegalArgumentException("Reservation can't be before today");
+        }
+        this.datetime = datetime;
+    }
 
     public String getComment() {
         return comment;
