@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.ConnectException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -47,20 +48,29 @@ public class reservationController {
             throw new Exception(result.getAllErrors().get(0).getDefaultMessage());
         }
         List<reservation> resList = reservationRep.findByPatientId(patientId);
-        for (reservation r : resList)
-        {
-            if (r.getDatetime().equals(reservation.getDatetime()))
-            {
+        LocalDateTime newStart = reservation.getDatetime();
+        LocalDateTime newEnd = newStart.plusMinutes(30);
+
+
+        for (reservation r : resList) {
+
+            LocalDateTime existingStart = r.getDatetime();
+            LocalDateTime existingEnd = existingStart.plusMinutes(30);
+
+            if (newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart)) {
                 throw new IllegalArgumentException("Patient cant have several reservations at the same time");
             }
         }
         Patient patient = patientRep.findById(patientId);
 
         resList = reservationRep.findByMachineId(machineId);
-        for (reservation r : resList)
-        {
-            if (r.getDatetime().equals(reservation.getDatetime()))
-            {
+
+        for (reservation r : resList) {
+
+            LocalDateTime existingStart = r.getDatetime();
+            LocalDateTime existingEnd = existingStart.plusMinutes(30);
+
+            if (newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart)) {
                 throw new IllegalArgumentException("Machine cant have several reservations at the same time");
             }
         }
